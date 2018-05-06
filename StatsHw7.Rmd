@@ -1,0 +1,63 @@
+---
+title: "StatsHw7"
+author: "Trevor Freeland"
+date: "May 6, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F, comment = NA, warning = F)
+```
+
+```{r}
+medicare <- read.csv("http://math.carleton.edu/Chihara/Stats345/Medicare.csv")
+```
+
+##58
+
+```{r}
+med.glm <- glm(alive/m~white + hmo + type, family = binomial, data = medicare, weights = m)
+summary(med.glm)
+med.glm2 <- glm(alive/m~white + type, family = binomial, data = medicare, weights = m)
+anova(med.glm, med.glm2, test = "Chisq")
+summary(med.glm2)
+med.glm3 <- glm(alive/m~type, family = binomial, data = medicare, weights = m)
+anova(med.glm3, med.glm2, test = "Chisq")
+#.07 for my p-value, I think I will not include it in my model based on the .05 significance level. 
+summary(med.glm3)
+exp(coef(med.glm3))
+```
+
+Final model: 
+
+Odds(Survival) = 2.11 -.54(Emergency) - .73(Urgent)
+
+-.54 
+
+
+##59
+
+##60
+
+##61
+
+###(A)
+
+###(B)
+
+###(C)
+
+##62
+
+###(A)
+
+###(B)
+
+##63
+
+###(A)
+
+###(B)
+
+###(C)
+
